@@ -1,0 +1,40 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "table-agent-toolkit"
+version = "0.1.0"
+description = "Claude Code skills and MCP server for working with tabular data"
+requires-python = ">=3.11"
+dependencies = [
+    "mcp[cli]",
+    "pandas",
+    "pyarrow",
+    "openpyxl",
+    "tabicl>=2.1.0",
+    "ctgan",
+    "tomli-w>=1.2.0",
+]
+
+[project.optional-dependencies]
+stats = ["pyreadstat"] # enables Stata (.dta), SAS (.sas7bdat), SPSS (.sav)
+
+[project.scripts]
+table-agent-toolkit-serve = "table_agent_toolkit.server:serve"
+table-agent-toolkit-install = "table_agent_toolkit.setup_cmd:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/table_agent_toolkit"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v"
+
+# [tool.hatch.build.targets.wheel.force-include]
+# "skills" = "table_agent_toolkit/srrskills"
