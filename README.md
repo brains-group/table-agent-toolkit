@@ -6,6 +6,9 @@
 
 An MCP server and Claude Code skill pack for working with tabular data files.
 
+> [!NOTE]
+> This MCP server will not expose any data online. However, the AI agent may choose to "inspect" the file contents before invoking the tool. Best way to try to prevent this is by specifying this behavior in the system prompt (CLAUDE.md or AGENTS.md).
+
 ## Installation
 
 Requires [uv](https://docs.astral.sh/uv/). Install it from [docs.astral.sh/uv](https://docs.astral.sh/uv/getting-started/installation/) if you don't have it.
@@ -84,3 +87,5 @@ Generates synthetic tabular data that statistically resembles the original. Usef
 ## Trying it out
 
 MCP servers provide a list of "tools" that the agent can choose to invoke based on the context. To see the tools in action, you can now prompt your agent of choice like the following: *Make me a synthetic version of the @adult-sample.csv dataset using TabICL, let's say 500 rows.*. The agent should then invoke the `generate_synthetic_data` tool with the appropriate parameters and will report back the path to the generated file.
+
+
